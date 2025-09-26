@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    
+
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # nixos-rk3588.url = "path:.."; # For local testing
@@ -19,7 +19,7 @@
     bootType = "uefi"; # Change to "u-boot" for U-Boot
 
     # Possible values for compilationType: "local-native", "remote-native", or "cross".
-    compilationType = "cross"; # Choose the compilation type here.
+    compilationType = "remote-native"; # Choose the compilation type here.
 
     localSystem = "x86_64-linux";
     targetSystem = "aarch64-linux";
@@ -93,7 +93,7 @@
           # import disko for disk init and mount
           disko.nixosModules.disko
 
-                # Custom configuration
+          # Custom configuration
           ./hosts/orangepi5plus-webapp
         ];
       };

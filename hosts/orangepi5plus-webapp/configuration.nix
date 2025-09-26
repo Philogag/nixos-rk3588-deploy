@@ -20,7 +20,7 @@
     auto-optimise-store = true;
     builders-use-substitutes = true;
     # enable flakes globally
-    experimental-features = ["nix-command" "flakes" "colmena"];
+    experimental-features = ["nix-command" "flakes"];
   };
 
   # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
@@ -33,6 +33,7 @@
     neovim
     neofetch
     ncdu
+    colmena
 
     # download
     wget
