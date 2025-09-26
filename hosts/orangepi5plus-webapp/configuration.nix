@@ -29,20 +29,15 @@
   environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";
   nix.nixPath = ["/etc/nix/inputs"];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  #
-  # TODO feel free to add or remove packages here.
   environment.systemPackages = with pkgs; [
     neovim
+    neofetch
+    ncdu
 
-    # networking
-    mtr # A network diagnostic tool
-    iperf3 # A tool for measuring TCP and UDP bandwidth performance
-    nmap # A utility for network discovery and security auditing
-    ldns # replacement of dig, it provide the command `drill`
-    socat # replacement of openbsd-netcat
-    tcpdump # A powerful command-line packet analyzer
+    # download
+    wget
+    curl
+    git
 
     # archives
     zip
@@ -56,28 +51,39 @@
     file
     which
     tree
-    gnused
     gawk
-    tmux
+    jq
     docker-compose
   ];
 
   # replace default editor with neovim
   environment.variables.EDITOR = "nvim";
+  programs.neovim = {
+    viAlias = true;
+    vimAlias = true;
+  };
 
   virtualisation.docker = {
     enable = true;
-    # start dockerd on boot.
-    # This is required for containers which are created with the `--restart=always` flag to work.
     enableOnBoot = true;
+    extraOptions = "--config /etc/docker";
   };
+  environment.etc."docker/config.json".text = ''
+  {
+    "data-root": "/opt/docker",
+    "registry-mirrors": [
+        "https://docker.m.daocloud.io",
+        "https://docker.1ms.run"
+    ]
+  }
+  '';
 
   services.openssh = {
     enable = true;
     settings = {
       X11Forwarding = true;
       PermitRootLogin = "prohibit-password"; # disable root login with password
-      PasswordAuthentication = false; # disable password login
+      PasswordAuthentication = true; # disable password login
     };
     openFirewall = true;
   };
