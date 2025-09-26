@@ -2,6 +2,8 @@
   description = "NixOS configuration for rk3588 remote deployment with UEFI and U-Boot options";
 
   inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # nixos-rk3588.url = "path:.."; # For local testing
