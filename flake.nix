@@ -41,6 +41,9 @@
           pkgsKernel = pkgsNative;
         };
         modules = [
+          # Pass the rk3588 input and nixpkgs as special arguments
+          ({ ... }: { _module.args = { inherit nixos-rk3588 nixpkgs; }; })
+          
           # import the rk3588 module, which contains the configuration for bootloader/kernel/firmware
           nixos-rk3588.nixosModules.boards.orangepi5plus.core
 
