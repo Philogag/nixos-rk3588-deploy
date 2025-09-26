@@ -31,13 +31,16 @@
 
     # Import nixpkgs
     pkgs = import nixpkgs { system = system; };
+    rk3588 = {
+      inherit nixpkgs pkgsKernel;
+    };
   in {
     nixosConfigurations = {
       orangepi5plus-webapp = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           # import the rk3588 module, which contains the configuration for bootloader/kernel/firmware
-          nixos-rk3588.nixosModules.boards.orangepi5plus.core
+          boards.orangepi5plus.core
 
           # UEFI bootloader
           bootloaderModule
