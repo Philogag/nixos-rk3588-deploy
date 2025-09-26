@@ -11,8 +11,6 @@
 
   outputs = { self, nixos-rk3588, disko, ...}: let
     inherit (nixos-rk3588.inputs) nixpkgs;
-    # choose your rk3588 SBC model
-    boardModule = nixos-rk3588.nixosModules.orangepi5plus;
 
     # System architecture
     system = "aarch64-linux";
@@ -39,7 +37,7 @@
         inherit system;
         modules = [
           # import the rk3588 module, which contains the configuration for bootloader/kernel/firmware
-          nixos-rk3588.nixosModules.orangepi5plus.core
+          nixos-rk3588.nixosModules.boards.orangepi5plus.core
 
           # UEFI bootloader
           bootloaderModule
