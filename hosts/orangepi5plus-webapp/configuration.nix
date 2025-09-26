@@ -20,7 +20,7 @@
     auto-optimise-store = true;
     builders-use-substitutes = true;
     # enable flakes globally
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = ["nix-command" "flakes" "colmena"];
   };
 
   # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
@@ -88,5 +88,5 @@
     openFirewall = true;
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "25.05";
 }
