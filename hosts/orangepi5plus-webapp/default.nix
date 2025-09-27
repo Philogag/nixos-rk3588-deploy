@@ -10,6 +10,10 @@
       ./configuration.nix
       ./user-group.nix
       ./disko-config.nix
-#      ./hardware-configuration.nix
+
+      # modules selected
+      ../../modules/nfs-mount.nix
+      ../../modules/service.docker.nix
+      ../../modules/service.ssh.nix
     ];
 }

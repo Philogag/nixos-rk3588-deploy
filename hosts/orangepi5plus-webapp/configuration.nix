@@ -64,29 +64,5 @@
     vimAlias = true;
   };
 
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = true;
-  };
-  environment.etc."docker/config.json".text = ''
-  {
-    "data-root": "/opt/docker",
-    "registry-mirrors": [
-        "https://docker.m.daocloud.io",
-        "https://docker.1ms.run"
-    ]
-  }
-  '';
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      X11Forwarding = true;
-      PermitRootLogin = "prohibit-password"; # disable root login with password
-      PasswordAuthentication = true; # disable password login
-    };
-    openFirewall = true;
-  };
-
   system.stateVersion = "25.05";
 }
