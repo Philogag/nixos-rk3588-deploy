@@ -67,7 +67,6 @@
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
-    extraOptions = "--config /etc/docker";
   };
   environment.etc."docker/config.json".text = ''
   {
